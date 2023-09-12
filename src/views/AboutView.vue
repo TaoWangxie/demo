@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h1>This is an about 12312312399999</h1>
+    <h1>这是个测试</h1>
   </div>
 </template>
 
