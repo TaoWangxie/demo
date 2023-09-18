@@ -3,7 +3,11 @@
 </template>
 
 <script setup lang='ts'>
-import { ref } from 'vue'
+import { nextTick, watch } from 'vue'
+
+nextTick(() => {
+  document.documentElement.classList.add('htmlClass')
+})
 </script>
 
 <style scoped>
