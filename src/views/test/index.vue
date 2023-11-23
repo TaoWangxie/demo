@@ -340,15 +340,15 @@ const throttle = (fn, daley) => {
  * instanceof
  */
 
- function instanceof(obj,fun){
-  let proto = obj.__proto__
-  let prototype = fun.prototype
-  while(true){
-    if(proto == null) return false
-    if(proto === prototype) return true
-    proto = proto.__proto__
-  }
- }
+//  function instanceof(obj,fun){
+//   let proto = obj.__proto__
+//   let prototype = fun.prototype
+//   while(true){
+//     if(proto == null) return false
+//     if(proto === prototype) return true
+//     proto = proto.__proto__
+//   }
+//  }
 
 /**
  * ===============9===============
