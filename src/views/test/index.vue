@@ -2,9 +2,11 @@
   <div class="container"></div>
 </template>
 <script setup lang="ts">
+import { error } from "console";
 import { resolve } from "dns";
+import { da } from "element-plus/es/locale";
+import { forIn } from "lodash";
 import { ref, onMounted, nextTick } from "vue";
-import func from "vue-temp/vue-editor-bridge";
 
 /**
  * ===============1===============
@@ -69,6 +71,7 @@ class myPromise {
     });
   }
 }
+
 
 // 测试
 let p1 = new myPromise((resolve, reject) => {
@@ -191,6 +194,8 @@ const myAsync = (genF) => {
   });
 };
 
+
+
 /**
  * ===============4===============
  * EventBus
@@ -277,6 +282,8 @@ Function.prototype.mybind = function (context) {
   };
 };
 
+
+
 /**
  * ===============6===============
  * 深拷贝
@@ -335,6 +342,7 @@ const throttle = (fn, daley) => {
   };
 };
 
+
 /**
  * ===============8===============
  * instanceof
@@ -350,6 +358,7 @@ const throttle = (fn, daley) => {
 //   }
 //  }
 
+
 /**
  * ===============9===============
  * new
@@ -363,6 +372,8 @@ function _new(fn,...args){
   }
   return obj
 }
+
+
 
 /**
  * ===============10===============
@@ -391,6 +402,61 @@ const ajax = {
         xhr.send(data)
     }
 }
+
+/**
+ * promise并发限制
+ */
+
+ function multiRequest(urls, maxnum){
+  let result = new Array(urls.length).fill(null)
+  let count = 0
+  return new Promise((resolve,reject)=>{
+    while(count < maxnum){
+      next()
+    }
+    function next(){
+      count++
+      if(count >= urls.length){
+        !result.includes(false) && resolve(result)
+        return
+      }
+      let url = urls[count]
+      fetch(url).then((res)=>{
+        result[count] = res
+        if(count < urls.length){
+          next()
+        }
+      }).catch((e)=>{
+        result[count] = e
+        if(count < urls.length){
+          next()
+        }
+      })
+    }
+  })
+ }
+
+ /**
+  * 数组交集
+  */
+
+ function intersection(arr1,arr2){
+  let map = new Map()
+  arr1.map((n)=>{
+    map.set(n,true)
+  })
+
+  let res:any = []
+  arr2.map((n)=>{
+    if(map.get(n)){
+      res.push(n)
+      map.delete(n)
+    }
+  })
+  return res
+ }
+
+
 </script>
 <style lang="scss">
 .container {
