@@ -456,7 +456,64 @@ const ajax = {
   return res
  }
 
+ /**
+  * 斐波那契数列
+  */
 
+  function fff(n){
+    n = n && parseInt(n)
+    if(n === 1 || n === 2){
+      return 1
+    }
+    let n1 = 1
+    let n2 = 1
+    for (let i = 2; i < n; i++) {
+      [n1,n2] = [n2,n1+n2]
+    }
+    return n2
+  }
+
+  /**
+   * 数组中只出现一次的数字
+   */
+
+   function singlenumber(nums){
+    let result = 0
+    nums.map((item)=>{
+      result ^= item
+    })
+    return result
+   }
+
+   /**
+    * 两数之和
+    */
+
+    function twosum(nums,target){
+      let map = new Map()
+      for (let i = 0; i < nums.length; i++) {
+        let neednum = target - nums[i]
+        if(map.has(neednum)){
+          return [i,map.get(neednum)]
+        }
+        map.set(nums[i],i)
+      }
+    }
+    /**
+     * 删除有序数组重复项 
+     */
+    function removeDuplicates(nums){
+      let slow = 0
+      let fast = 1
+      if(nums.length === 0) return 0
+      while(fast < nums.length){
+        if(nums[slow] !== nums[fast]){
+          nums[++slow] = nums(fast)
+        }
+        fast++
+      }
+      return slow+1
+    }
 </script>
 <style lang="scss">
 .container {
